@@ -3,3 +3,4 @@ numpy
 matplotlib
 requests
 opencv-python-headless==4.10.0.84
+# Cambio temporal para forzar reinstalación
