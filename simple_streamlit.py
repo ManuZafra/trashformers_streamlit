@@ -1,5 +1,4 @@
 import cv2
-import streamlit as st
 import time
 import torch
 from ultralytics import YOLO
@@ -10,10 +9,18 @@ import json
 import base64
 import os
 
+import subprocess
+import streamlit as st
 
-#Les navigateurs ne peuvent pas interpréter directement les images locales
-# (fichiers stockés sur votre système). Pour contourner cette limitation,
-# les images doivent être encodées en base64.
+st.title("Dependencias instaladas en el entorno de Streamlit")
+
+try:
+    installed_packages = subprocess.check_output(['pip', 'list']).decode('utf-8')
+    st.text(installed_packages)
+except Exception as e:
+    st.error(f"Error al listar dependencias: {e}")
+
+
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:  # Ouvre le fichier en mode binaire.
         data = f.read()  # Lit les données du fichier.
@@ -268,8 +275,7 @@ def process_webcam_yolo(model_path):
             # Afficher la frame annotée
             frame_placeholder.image(annotated_frame_rgb, caption="Webcam Annotée", use_container_width=True)
 
-            # Afficher le temps de traitement
-            st.write(f"Temps de traitement : {end_time - start_time:.2f} secondes")
+
 
         except Exception as e:
             st.error(f"Erreur lors du traitement : {str(e)}")
