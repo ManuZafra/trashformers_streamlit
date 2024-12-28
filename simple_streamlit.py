@@ -1,4 +1,5 @@
 import cv2
+import streamlit as st
 import time
 import torch
 from ultralytics import YOLO
@@ -9,17 +10,8 @@ import json
 import base64
 import os
 
-import subprocess
-import streamlit as st
-
-st.title("Dependencias instaladas en el entorno de Streamlit")
-
-try:
-    installed_packages = subprocess.check_output(['pip', 'list']).decode('utf-8')
-    st.text(installed_packages)
-except Exception as e:
-    st.error(f"Error al listar dependencias: {e}")
-
+if __name__ == "__main__":
+    st.title("Trashformers Streamlit App")
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:  # Ouvre le fichier en mode binaire.
