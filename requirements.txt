@@ -2,4 +2,4 @@ streamlit
 numpy
 matplotlib
 requests
-opencv-python==4.5.5.64
+opencv-python-headless==4.10.0.84
